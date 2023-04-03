@@ -24,3 +24,6 @@ console.log(binarySearch([1, 2, 3], 1));
 console.log(binarySearch([1, 2, 3], 2));
 console.log(binarySearch([1, 2, 3], 3));
 console.log(binarySearch([1, 2, 3], 4));
+
+// note
+// don't forget to compare elements instead of indexes, such as arr[middle] > el, not middle > el
