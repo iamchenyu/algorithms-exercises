@@ -1,7 +1,7 @@
 const graph = {};
 graph.you = ["alice", "bob", "claire"];
 graph.bob = ["anuj", "peggy"];
-graph.alice = ["peggy"];
+graph.alice = ["peggy", "you"];
 graph.claire = ["thom", "jonny"];
 graph.anuj = [];
 graph.peggy = [];
@@ -22,16 +22,16 @@ const personIsSeller = (name) => name[name.length - 1] === "m";
  */
 
 const findMangoSeller = (name) => {
-  const search = new Set();
+  let searching = graph[name];
+  const searched = new Set();
 
-  if (graph[name]) {
-    graph[name].forEach((friend) => search.add(friend));
+  while (searching.length) {
+    const cur = searching.shift();
 
-    for (let friend of search) {
-      if (personIsSeller(friend)) return true;
-      else {
-        graph[friend].forEach((f) => search.add(f));
-      }
+    if (!searched.has(cur)) {
+      if (personIsSeller(cur)) return true;
+      searching = searching.concat(graph[cur]);
+      searched.add(cur);
     }
   }
   return false;
