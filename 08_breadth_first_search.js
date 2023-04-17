@@ -30,7 +30,7 @@ const findMangoSeller = (name) => {
 
     if (!searched.has(cur)) {
       if (personIsSeller(cur)) return true;
-      searching = searching.concat(graph[cur]);
+      searching.push(...graph[cur]);
       searched.add(cur);
     }
   }
